@@ -10,27 +10,21 @@ export default class Toolbar extends Component {
 
   onSelect = () => {
     this.props.onSelect(this.props.filter)
+    console.log(this.props.filter)
   }
 
   render() {
     const { category, isSelected } = this.props.filter
 
     return (
-      <li>
+      <li className="toolbarItem">
         <button
           onClick={this.onSelect}
-          aria-selected={isSelected}
-          className={isSelected && 'filter-selected'}>
+          aria-current={isSelected}
+          className={(isSelected ? 'filterSelected' : null) + ' ' + 'filter'}>
           {category}
         </button>
       </li>
     )
   }
-}
-
-{
-  /* <Toolbar
-  filters={["All", "Websites", "Flayers", "Business Cards"]}
-  isSelected="All"
-  onSelectFilter={(filter) => {console.log(filter);}}/> */
 }

@@ -1,16 +1,8 @@
+/* Legacy styles */
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: large;
 }
 
 .App-header {
@@ -28,11 +20,49 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Custom styles */
+
+.implicitList {
+  margin: 0;
+  padding: 1.25rem 10%;
+  list-style: none;
+}
+
+/* Toolbar styles */
+
+.toolbar {
+  background-color: #1e1e1e;
+  color: whitesmoke;
+}
+
+.toolbarItem {
+  display: inline-block;
+}
+
+.filter {
+  margin: 1rem;
+  border: thick solid white;
+  padding: 1rem;
+  background-color: #1e1e1e;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+
+.filterSelected {
+  border-color: white;
+  background-color: white;
+  color: #1e1e1e;
+}
+
+/* Project Gallery styles */
+
+.projectItem {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0.5rem 0;
 }

@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Toolbar from './Toolbar'
 import ProjectList from './ProjectList'
+import FilterModel from '../models/FilterModel'
 
 export default class Portfolio extends Component {
   static propTypes = {
-    prop: PropTypes,
+    prop: PropTypes.func.isRequired,
   }
   state = {
     filters: [
@@ -32,12 +33,14 @@ export default class Portfolio extends Component {
 
     return (
       <>
-        <ul>
+        <ul className="implicitList toolbar">
           {filters.map((o) => (
             <Toolbar key={o.id} filter={o} onSelect={this.onSelectFilter} />
           ))}
         </ul>
-        <ProjectList category={o.category && o.isSelected} />
+        <ul className="implicitList">
+          <ProjectList />
+        </ul>
       </>
     )
   }
