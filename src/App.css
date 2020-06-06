@@ -22,7 +22,7 @@
 
 /* Custom styles */
 
-.implicit-list {
+.list {
   margin: 0;
   padding: 1.25rem 10%;
   list-style: none;
@@ -67,6 +67,7 @@
   padding: 0.5rem 0;
 }
 
+/* React-masonry-css styles: */
 .my-masonry-grid {
   display: flex;
   margin-left: -1.875rem; /* gutter size offset */

@@ -1,46 +1,70 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import Masonry from 'react-masonry-css'
 import Toolbar from './Toolbar'
 import ProjectList from './ProjectList'
 import FilterModel from '../models/FilterModel'
+import data from './data/data.json'
 
 export default class Portfolio extends Component {
-  static propTypes = {
-    prop: PropTypes.func.isRequired,
-  }
-  state = {
-    filters: [
-      new FilterModel('All', true),
-      new FilterModel('Business Cards'),
-      new FilterModel('Websites'),
-      new FilterModel('Flayers'),
-    ],
+  constructor() {
+    super()
+
+    this.state = {
+      filters: [
+        new FilterModel('All', true),
+        new FilterModel('Business Cards'),
+        new FilterModel('Websites'),
+        new FilterModel('Flayers'),
+      ],
+      filterSelected: 'All',
+    }
   }
 
-  onSelectFilter = (filter) => {
+  onSelectFilter = (filterItem) => {
     this.setState((prevState) => ({
       filters: prevState.filters.map((o) => {
-        if (o.id === filter.id) {
-          return { ...o, isSelected: !o.isSelected }
+        if (o.id === filterItem.id) {
+          return { ...o, isSelected: true }
+        } else {
+          return { ...o, isSelected: false }
         }
-        return o
       }),
+      filterSelected: (prevState.filterSelected = 'Websites'),
     }))
   }
 
   render() {
+    // React-masonry-css breakpoints:
+    const breakpointColumnsObj = {
+      default: 4,
+      1100: 3,
+      700: 2,
+      500: 1,
+    }
+
     const { filters } = this.state
 
     return (
       <>
-        <ul className="implicit-list toolbar">
+        <ul className="list toolbar">
           {filters.map((o) => (
-            <Toolbar key={o.id} filter={o} onSelect={this.onSelectFilter} />
+            <Toolbar key={o.id} filterItem={o} onSelect={this.onSelectFilter} />
           ))}
         </ul>
-        <ul className="implicit-list">
-          <ProjectList />
-        </ul>
+        {/* <div className="list"> */}
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid list"
+          columnClassName="my-masonry-grid_column">
+          {data
+            .filter((project) => project.category.includes('Flayers'))
+            .map((project, i) => (
+              <li key={i}>
+                <ProjectList project={project} />
+              </li>
+            ))}
+        </Masonry>
+        {/* </ul> */}
       </>
     )
   }
