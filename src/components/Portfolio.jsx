@@ -33,12 +33,12 @@ export default class Portfolio extends Component {
 
     return (
       <>
-        <ul className="implicitList toolbar">
+        <ul className="implicit-list toolbar">
           {filters.map((o) => (
             <Toolbar key={o.id} filter={o} onSelect={this.onSelectFilter} />
           ))}
         </ul>
-        <ul className="implicitList">
+        <ul className="implicit-list">
           <ProjectList />
         </ul>
       </>

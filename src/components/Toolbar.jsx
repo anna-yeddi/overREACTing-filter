@@ -17,11 +17,11 @@ export default class Toolbar extends Component {
     const { category, isSelected } = this.props.filter
 
     return (
-      <li className="toolbarItem">
+      <li className="toolbar-item">
         <button
           onClick={this.onSelect}
           aria-current={isSelected}
-          className={(isSelected ? 'filterSelected' : null) + ' ' + 'filter'}>
+          className={[isSelected ? 'filter-selected' : null, 'filter']}>
           {category}
         </button>
       </li>
