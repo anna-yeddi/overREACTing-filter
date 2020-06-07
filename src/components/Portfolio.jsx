@@ -16,7 +16,6 @@ export default class Portfolio extends Component {
         new FilterModel('Websites'),
         new FilterModel('Flayers'),
       ],
-      filterSelected: 'All',
     }
   }
 
@@ -29,7 +28,6 @@ export default class Portfolio extends Component {
           return { ...o, isSelected: false }
         }
       }),
-      filterSelected: (prevState.filterSelected = 'Websites'),
     }))
   }
 
@@ -43,6 +41,8 @@ export default class Portfolio extends Component {
     }
 
     const { filters } = this.state
+    let filterSelected = filters.find((filterItem) => filterItem.isSelected)
+      .category
 
     return (
       <>
@@ -57,7 +57,7 @@ export default class Portfolio extends Component {
           className="my-masonry-grid list"
           columnClassName="my-masonry-grid_column">
           {data
-            .filter((project) => project.category.includes('Flayers'))
+            .filter((project) => project.category.includes(filterSelected))
             .map((project, i) => (
               <li key={i}>
                 <ProjectList project={project} />
