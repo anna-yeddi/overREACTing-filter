@@ -1,38 +1,20 @@
-/* Legacy styles */
-.App {
-  text-align: center;
+/* Global Styles */
+
+:root {
+  box-sizing: border-box;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: large;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-/* Custom styles */
-
-.list {
-  margin: 0;
-  padding: 1.25rem 10%;
-  list-style: none;
+  --gap: 1.875rem;
 }
 
 /* Toolbar styles */
 
 .toolbar {
+  margin: 0 0 0 -1rem; /* list styles offset */
+  padding: 1rem 10%;
   background-color: #1e1e1e;
   color: whitesmoke;
+  list-style: none;
 }
 
 .toolbar-item {
@@ -57,28 +39,24 @@
 
 /* Project Gallery styles */
 
-.project-item {
+/* React-masonry-css styles: */
+.project-list {
+  display: flex;
+  padding: 0 10%;
+  margin-left: -1.875rem; /* gutter size offset */
+  width: auto;
+}
+.project-list_column {
+  padding-left: var(--gap); /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style projectList items */
+.project-list-item {
   position: relative;
   top: 0;
   left: 0;
   display: block;
   width: 100%;
-  height: auto;
-  padding: 0.5rem 0;
-}
-
-/* React-masonry-css styles: */
-.my-masonry-grid {
-  display: flex;
-  margin-left: -1.875rem; /* gutter size offset */
-  width: auto;
-}
-.my-masonry-grid_column {
-  padding-left: 1.875rem; /* gutter size */
-  background-clip: padding-box;
-}
-
-/* Style your items */
-.my-masonry-grid_column > li {
-  margin-bottom: 1.875rem;
+  margin: var(--gap) 0;
 }

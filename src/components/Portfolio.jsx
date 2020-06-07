@@ -35,34 +35,40 @@ export default class Portfolio extends Component {
     // React-masonry-css breakpoints:
     const breakpointColumnsObj = {
       default: 4,
-      1100: 3,
-      700: 2,
-      500: 1,
+      1280: 3,
+      840: 2,
+      680: 1,
     }
 
     const { filters } = this.state
+
+    // Filter projects:
+    const projectItems = []
     let filterSelected = filters.find((filterItem) => filterItem.isSelected)
       .category
+    data.forEach((project) => {
+      if (filterSelected === project.category || filterSelected === 'All') {
+        return projectItems.push(project)
+      }
+    })
 
     return (
       <>
-        <ul className="list toolbar">
+        <ul className="toolbar">
           {filters.map((o) => (
             <Toolbar key={o.id} filterItem={o} onSelect={this.onSelectFilter} />
           ))}
         </ul>
-        {/* <div className="list"> */}
+        {/* <ul className="list"> */}
         <Masonry
           breakpointCols={breakpointColumnsObj}
-          className="my-masonry-grid list"
-          columnClassName="my-masonry-grid_column">
-          {data
-            .filter((project) => project.category.includes(filterSelected))
-            .map((project, i) => (
-              <li key={i}>
-                <ProjectList project={project} />
-              </li>
-            ))}
+          className="project-list"
+          columnClassName="project-list_column">
+          {projectItems.map((project, i) => (
+            <div key={i}>
+              <ProjectList project={project} />
+            </div>
+          ))}
         </Masonry>
         {/* </ul> */}
       </>
