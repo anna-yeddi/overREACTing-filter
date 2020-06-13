@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function ProjectList(props) {
-  const project = props.project
+  const { project } = props
 
   return (
     <img
